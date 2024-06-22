@@ -1,5 +1,4 @@
 
-import 'dart:typed_data';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:chatter_box/openai_service.dart';

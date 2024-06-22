@@ -1,16 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
-
-import 'package:chatter_box/sk.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class OpenAIService {
   final List<Map<String,String>> messages = [];
   Future<Object?> isArtPromptAPI(String prompt) async {
     try{
-      final res = await http.post(Uri.parse('https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=$openAIAPIKey'),
+      final res = await http.post(Uri.parse('https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${dotenv.env['openAIAPIKey']}'),
         headers: {
           'Content-Type' : 'application/json',
         },
@@ -49,7 +48,7 @@ class OpenAIService {
       'content' : prompt,
     });
     try{
-      final res = await http.post(Uri.parse('https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=$openAIAPIKey'),
+      final res = await http.post(Uri.parse('https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${dotenv.env['openAIAPIKey']}'),
         headers: {
           'Content-Type' : 'application/json',
         },
@@ -83,7 +82,7 @@ class OpenAIService {
     try{
       final res = await http.post(Uri.parse('https://api.vyro.ai/v1/imagine/api/generations'),
         headers: {
-          'Authorization' : 'Bearer $imageAPIKey'
+          'Authorization' : 'Bearer ${dotenv.env['imageAPIKey']}'
         },
         body: jsonEncode({
           'prompt': prompt,
@@ -116,7 +115,7 @@ class OpenAIService {
     try {
       String url = 'https://api.vyro.ai/v1/imagine/api/generations';
       Map<String, dynamic> headers = {
-        'Authorization': 'Bearer $imageAPIKey'
+        'Authorization': 'Bearer ${dotenv.env['imageAPIKey']}'
       };
 
       Map<String, dynamic> payload = {
