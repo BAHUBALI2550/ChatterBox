@@ -1,4 +1,4 @@
-# chatter_box
+# Chatter_Box
 
 A new Flutter project.
 
